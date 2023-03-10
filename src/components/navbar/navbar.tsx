@@ -5,12 +5,6 @@ import styled from "styled-components";
 
 export const Navbar = () => {
   const cartItemsCount = useCartStore((state) => state.cartItemsCount);
-  const products = useCartStore((state) => state.products);
-  const state = useCartStore((state) => state);
-  console.log("products");
-  console.log(products);
-  console.log("state");
-  console.log(state);
   return (
     <Container className={"shadow-sm sticky"}>
       <Li>

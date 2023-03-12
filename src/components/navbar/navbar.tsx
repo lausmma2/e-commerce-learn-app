@@ -1,10 +1,18 @@
 import useCartStore from "@/hooks/useCartStore";
 import Link from "next/link";
+import { useState } from "react";
 import { Button } from "reactstrap";
 import styled from "styled-components";
+import CustomModal from "../CustomModal";
 
 export const Navbar = () => {
+  const [isOpenModal, setIsOpenModal] = useState<boolean>(false);
   const cartItemsCount = useCartStore((state) => state.cartItemsCount);
+
+  const toggleModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
+
   return (
     <Container className={"shadow-sm sticky"}>
       <Li>
@@ -24,6 +32,7 @@ export const Navbar = () => {
           style={{ width: "3rem", height: "3rem", position: "relative" }}
           variant="outline-primary"
           className="rounded-circle"
+          onClick={toggleModal}
         >
           <div
             className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
@@ -37,6 +46,7 @@ export const Navbar = () => {
               transform: "translate(25%, 25%)",
             }}
           >
+            <CustomModal isOpen={isOpenModal} toggle={toggleModal} />
             {cartItemsCount}
           </div>
         </Button>

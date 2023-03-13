@@ -35,6 +35,7 @@ const CustomCard = ({ id, title, category, price, description }: IProduct) => {
       style={{
         width: "18rem",
         marginRight: "2%",
+        zIndex: 1000,
       }}
       className="d-flex p-2 mb-5"
       color="light"
@@ -57,6 +58,7 @@ const CustomCard = ({ id, title, category, price, description }: IProduct) => {
           onClick={() => handleAddClick(prod)}
           className="w-100"
           color="primary"
+          name="add-to-cart"
         >
           Add to cart
         </Button>

@@ -35,6 +35,7 @@ export const Navbar = () => {
           onClick={toggleModal}
         >
           <div
+            id="cart-count"
             className="rounded-circle bg-danger d-flex justify-content-center align-items-center"
             style={{
               color: "white",
@@ -61,7 +62,7 @@ const Container = styled.ul`
   text-align: center;
   position: sticky;
   top: 0;
-  z-index: 1100;
+  z-index: 1010;
 `;
 
 const Li = styled.li`

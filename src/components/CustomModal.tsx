@@ -30,8 +30,8 @@ const CustomModal = ({ isOpen, toggle }: ModalProps) => {
             {products &&
               products.map((product) => {
                 return (
-                  <Row>
-                    <span key={product.id}>
+                  <Row key={product.id}>
+                    <span>
                       {product.title} - ${product.price}
                     </span>
                   </Row>

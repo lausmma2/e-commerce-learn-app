@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Container, Row } from "reactstrap";
-import { useQuery } from "react-query";
+import { QueryClient, useQuery, dehydrate } from "react-query";
 import CustomCard from "@/components/CustomCard";
-import { GetServerSideProps } from "next/types";
+import { fetchFakeProducts } from "@/lib/fetcher";
 
 export interface IProduct {
   id: number;
@@ -11,29 +12,38 @@ export interface IProduct {
   category: string;
 }
 
-export const getServerSideProps: GetServerSideProps<{
+/*export const getServerSideProps: GetServerSideProps<{
   products: IProduct[];
 }> = async () => {
-  const products = await fetch(
-    "https://fakestoreapi.com/products?limit=9"
-  ).then((res) => res.json());
+  const products = await fetchFakeProducts();
   return { props: { products } };
-};
+};*/
 
-type StoreProps = {
+export async function getServerSideProps() {
+  const queryClient = new QueryClient();
+
+  await queryClient.prefetchQuery("products", fetchFakeProducts);
+
+  return {
+    props: {
+      dehydratedState: dehydrate(queryClient),
+    },
+  };
+}
+
+/*type StoreProps = {
   products: IProduct[];
-};
+};*/
 
-const Store = ({ products }: StoreProps) => {
+//const Store = ({ products }: StoreProps) => {
+const Store = () => {
+  // Tady není potřeba použít props, protože useQuery si data sám bere z cache (kde jsou pomocí prefetchQuery) podle queryKey... bez použití hydrate ale je potřeba použít props
   const { data, isLoading, refetch, error } = useQuery<IProduct[] | undefined>({
     queryKey: ["products"],
-    queryFn: () =>
-      fetch("https://fakestoreapi.com/products?limit=9").then((res) =>
-        res.json()
-      ),
+    queryFn: () => fetchFakeProducts(),
     refetchOnWindowFocus: false,
     refetchOnMount: false,
-    initialData: products,
+    //initialData: products,
     //enabled: false,
   });
 

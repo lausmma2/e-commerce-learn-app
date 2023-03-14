@@ -50,9 +50,11 @@ const CustomCard = ({ id, title, category, price, description }: IProduct) => {
         <CardSubtitle className="mb-2 text-muted" tag="h6">
           ${price}
         </CardSubtitle>
-        <CardText>
-          {description.substring(0, 50).toLowerCase()}...
-          <Link href={`/store/products/${id}`}>more</Link>
+        <CardText className="two-line-text">
+          {description}...
+          <Link id="product-detail" href={`/store/products/${id}`}>
+            more
+          </Link>
         </CardText>
         <Button
           onClick={() => handleAddClick(prod)}
@@ -62,12 +64,15 @@ const CustomCard = ({ id, title, category, price, description }: IProduct) => {
         >
           Add to cart
         </Button>
-        <div className="d-flex justify-content-center">{quantity}</div>
+        <div id="product-count" className="d-flex justify-content-center">
+          {quantity}
+        </div>
         {quantity > 0 && (
           <Button
             onClick={() => handleDeleteClick(prod.id)}
             className="w-100 mb-2"
             color="danger"
+            name="remove-from-cart"
           >
             Remove
           </Button>

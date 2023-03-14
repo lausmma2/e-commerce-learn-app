@@ -26,12 +26,14 @@ const CustomModal = ({ isOpen, toggle }: ModalProps) => {
         <ModalHeader toggle={toggle}>Shopping Cart</ModalHeader>
         <ModalBody>
           <Container>
-            {products.length < 1 && <span>...Nothing in the cart...</span>}
+            {products.length < 1 && (
+              <span id="cart-content">...Nothing in the cart...</span>
+            )}
             {products &&
               products.map((product) => {
                 return (
                   <Row key={product.id}>
-                    <span>
+                    <span id="cart-content">
                       {product.title} - ${product.price}
                     </span>
                   </Row>

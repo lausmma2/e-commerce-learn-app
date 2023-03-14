@@ -2,6 +2,7 @@ import { Todo } from "@/components/todo";
 import { useQuery } from "react-query";
 import { GetServerSideProps } from "next";
 import Head from "next/head";
+import { Container } from "reactstrap";
 
 const fetchTodos = (page: number, limit: number) =>
   // new Promise<any>((resolve) => {
@@ -53,12 +54,15 @@ export const Todos = ({ todos }: Props) => {
         <title>Todo list</title>
       </Head>
       <main>
-        <div>
+        <Container>
           <h1>Todos</h1>
           {isRefetching && <div>loading</div>}
-          <button onClick={() => refetch({})}>refetch</button>
+          <div className="d-flex justify-content-between">
+            <button onClick={() => refetch({})}>refetch</button>
+            <button>Create a New Todo</button>
+          </div>
           <div>
-            {data.map((todo) => (
+            {data?.map((todo) => (
               <Todo
                 id={todo.id}
                 key={todo.id}
@@ -67,7 +71,7 @@ export const Todos = ({ todos }: Props) => {
               />
             ))}
           </div>
-        </div>
+        </Container>
       </main>
     </>
   );

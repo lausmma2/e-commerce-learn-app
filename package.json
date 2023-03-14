@@ -13,6 +13,10 @@
     "e2e:headless": "start-server-and-test dev http://localhost:3000 \"cypress run --e2e\""
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.11.12",
+    "@mui/x-data-grid": "^6.0.1",
     "@tanstack/react-query": "^4.24.10",
     "@types/node": "18.14.4",
     "@types/react": "18.0.28",
@@ -26,6 +30,7 @@
     "react-bootstrap": "^2.7.2",
     "react-dom": "18.2.0",
     "react-query": "^3.39.3",
+    "react-table": "^7.8.0",
     "reactstrap": "^9.1.6",
     "start-server-and-test": "^2.0.0",
     "styled-components": "^5.3.8",
@@ -33,6 +38,7 @@
     "zustand": "^4.3.6"
   },
   "devDependencies": {
+    "@types/react-table": "^7.7.14",
     "@typescript-eslint/eslint-plugin": "^5.54.0",
     "@typescript-eslint/parser": "^5.54.0",
     "babel-plugin-styled-components": "^2.0.7",
